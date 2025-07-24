@@ -1,29 +1,20 @@
-let num = 10369;
-let x = num % 10;
-let result = '';
+const digit = 10369;
+let temp = digit % 10000;
+temp = (digit - temp) / 10000;
+let result = temp + ' ';
 
-num -= x;
-result += x.toString() + ' ';
-num /= 10;
+temp = digit % 1000;
+temp -= temp;
+result += temp + ' ';
 
-x = num % 10;
-num -= x;
-result += x.toString() + ' ';
-num /= 10;
+temp = digit % 1000;
+temp -= temp % 100;
+result += temp/100 + ' ';
 
-x = num % 10;
-num -= x;
-result += x.toString() + ' ';
-num /= 10;
+temp = digit % 100;
+temp -= temp % 10;
+result += temp/10 + ' ';
 
-x = num % 10;
-num -= x;
-result += x.toString() + ' ';
-num /= 10;
-
-x = num % 10;
-num -= x;
-result += x.toString() + ' ';
-num /= 10;
-
-console.log('The result is', result.split('').reverse().join(''));
+temp = digit % 10;
+result += temp + ' ';
+console.log('The result is', result);
