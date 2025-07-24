@@ -1,3 +1,6 @@
+/*Створити репозиторій із файлом index.html.
+    Додати туди невеликий скрипт, мета якого – вивести всі відомі вам типи даних у консоль. Використовуючи оператор typeof та console.log*/
+
 console.log('Type of undefined is', typeof undefined);
 console.log('Type of 0 is', typeof 0);
 console.log('Type of true is', typeof true);
