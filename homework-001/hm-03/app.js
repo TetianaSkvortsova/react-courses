@@ -26,4 +26,4 @@ num -= x;
 result += x.toString() + ' ';
 num /= 10;
 
-console.log('result is', result.split('').reverse().join(''));
+console.log('The result is', result.split('').reverse().join(''));
