@@ -3,11 +3,7 @@
 // document.write(`Numbers from 20 to 30 step 0.5 <br>`);
 let stringNum = '';
 for (let i = 20; i <= 30; i += 0.5) {
-    if (i === 30) {
-        stringNum += i;
-    } else {
-        stringNum += i;
-        stringNum += ', ';
-    }
+    stringNum += i;
+    stringNum += ' ';
 }
 console.log(stringNum);
