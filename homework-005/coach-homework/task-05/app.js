@@ -9,7 +9,8 @@ while (numberInPower < digit) {
     numberInPower *= permanentNum;
     power++;
     if (numberInPower === digit) {
-        document.write(`The number ${digit} can be obtained by raising the number 3 to the power ${power}`)
+        document.write(`The number ${digit} can be obtained by raising the number 3 to the power ${power}`);
+        break;
     }
     if (numberInPower > digit) {
         document.write(`The number ${digit} CANNOT be obtained by raising the number 3 to the power ${power}`)
