@@ -3,6 +3,10 @@
 
 let mul = 15;
 for (let i = 16; i <= 35; i++ ) {
-    mul *= i;
+    BigInt(mul *= i);
 }
-document.write(`<span> Product of numbers 15...35 = ${mul}</span>`);
+document.write(`<span> Product of numbers 15...35 = ${BigInt(mul)}</span>`);
+let x = 2;
+let y = ++x;
+console.log(x);
+console.log(y);
