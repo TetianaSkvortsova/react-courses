@@ -1,13 +1,16 @@
 // Task #1--------------------------------
 let arr = [];
-let arrLength;
+let arrLength, item;
 
 do {
     arrLength = parseInt(prompt('Enter the length of the array '), 10);
 } while (isNaN(arrLength) || arrLength <= 0);
 
 for (let i = 0; i < arrLength; i++) {
-    const item = parseInt(prompt('Enter an item of the array '));
+    do {
+        item = parseInt(prompt('Enter an item of the array '));
+    } while (isNaN(item))
+
     arr.push(item);
 }
 
