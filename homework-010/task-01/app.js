@@ -116,11 +116,12 @@ const biggestExpenses = orders.reduce((acc, item) => {
         return acc.sum < item.sum ? item : acc;
     });
 console.log('biggestExpenses ', biggestExpenses);
+console.log(`V1:\n${biggestExpenses.user} had spend more than others: ${biggestExpenses.sum}$`);
 
 //Варіант 2:
 //Використовую готовий Map із другого завдання
 const biggestExpenses2 = [...mapOrdersSum].reduce((acc, item) => {
     return acc[1] < item[1] ? item : acc;
 });
-console.log(`${biggestExpenses2[0]} had spend more than others: ${biggestExpenses2[1]}$`);
+console.log(`V2:\n${biggestExpenses2[0]} had spend more than others: ${biggestExpenses2[1]}$`);
 
