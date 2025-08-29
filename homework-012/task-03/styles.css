@@ -1,0 +1,43 @@
+.wrapper {
+    width: 100%;
+    height: 1000px;
+}
+
+.pr-images {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pr-image:last-child {
+    margin-right: 0;
+}
+
+.pr-image {
+    width: 9%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.random-image {
+    height: 90%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.images-num {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.image-num {
+    width: 9%;
+    text-align: center;
+    border: blue 1px solid;
+}
