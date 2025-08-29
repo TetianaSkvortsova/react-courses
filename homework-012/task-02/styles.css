@@ -1,0 +1,18 @@
+.font-arial {
+    font-family: "Arial", Times, serif;
+}
+
+.text {
+    font-size: 40px;
+}
+
+.btn {
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.txt-color {
+    color: blue;
+}
