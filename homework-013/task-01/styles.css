@@ -1,0 +1,14 @@
+.wrapper {
+    width: 500px;
+    height: 250px;
+}
+
+.aButton {
+    width: 150px;
+    height: 80px;
+    font: 14px "Fira Sans", sans-serif;
+}
+
+.addLink {
+    margin-right: 20px;
+}
