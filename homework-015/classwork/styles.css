@@ -1,0 +1,17 @@
+body > * {
+    font: 24px/30px "Calibri", sans-serif;
+    margin-top: 20px;
+}
+
+body > * span {
+    padding: 0 10px;
+    color: blue;
+}
+
+.text span {
+    color: black;
+}
+
+.name_pass {
+    margin-bottom: 0;
+}
