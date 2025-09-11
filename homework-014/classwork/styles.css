@@ -1,0 +1,54 @@
+.form {
+    font: 24px/20px "Calibri", sans-serif;
+    margin-left: 50px;
+    /*border: black 1px solid;*/
+    padding: 20px;
+    max-width: 700px;
+}
+
+input[type="date"] {
+    font: 24px/20px "Calibri", sans-serif;
+}
+
+input[type="text"] {
+    padding: 7px;
+    font: 24px/20px "Calibri", sans-serif;
+}
+
+label {
+    line-height: 38px;
+}
+
+select {
+    font: 24px/20px "Calibri", sans-serif;
+}
+
+textarea {
+    font: 24px/20px "Calibri", sans-serif;
+}
+
+button {
+    font: 24px/20px "Calibri", sans-serif;
+    padding: 5px;
+}
+
+input [radio]{
+    display: block;
+}
+
+.wrapper {
+    max-width: 700px;
+    font: 24px/20px "Calibri", sans-serif;
+    border: black 1px solid;
+}
+
+.row {
+    display: flex;
+    font: 24px/20px "Calibri", sans-serif;
+    border-bottom: black 1px solid;
+    padding: 10px;
+}
+
+.cellData {
+    padding-left: 10px;
+}

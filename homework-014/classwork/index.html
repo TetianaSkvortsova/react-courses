@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM, Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <form name="signIn" class="form">
+        <label class="userName" for="name">Name:</label><br>
+        <input type="text" id="name" name="userName"><br><br>
+
+        <label class="userLastname" for="lastName">Lastname:</label><br>
+        <input type="text" id="lastName" name="userLastname"><br><br>
+
+        <label class="userBirth" for="birth">Date of birth:</label><br>
+        <input type="date" id="birth" name="userBirth"><br><br>
+
+        <label class="userGender">Gender:</label><br><br>
+        <input type="radio" name="userGender" value="M">Male<br><br>
+        <input type="radio" name="userGender" value="F">Female<br><br>
+
+        <label class="userCity" for="city">City:</label><br>
+        <select id="city" name="userCity">
+            <option value="KV">Kyiv</option>
+            <option value="OD">Odessa</option>
+            <option value="LV">Lviv</option>
+            <option value="LTS">Lutsk</option>
+        </select><br><br>
+
+        <label class="userAddress" for="address">Address:</label><br>
+        <textarea id="address" name="userAddress" rows="4" cols="50"></textarea><br><br>
+
+        <label class="userLanguage">Languages:</label><br>
+        <p><input type="checkbox" name="userLanguage" value="Eng">English</p>
+        <p><input type="checkbox" name="userLanguage" value="Fr">French</p>
+        <p><input type="checkbox" name="userLanguage" value="Ua">Ukrainian</p>
+
+        <button type="button" value="Submit">Submit</button>
+
+    </form>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
