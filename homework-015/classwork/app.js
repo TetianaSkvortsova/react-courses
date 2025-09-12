@@ -12,7 +12,7 @@ resultHash.forEach((item) => {
     hashtagsResult.appendChild(resultItem);
 })
 
-const regExpDate = /\d\d.\d\d.\d\d\d\d/g;
+const regExpDate = /\d{2}.\d{2}.\d{4}/g;
 const dateResult = document.querySelector('.date');
 const resultDate = textValue.match(regExpDate);
 
