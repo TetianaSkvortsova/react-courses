@@ -22,7 +22,7 @@ resultDate.forEach((item) => {
     dateResult.appendChild(resultItem);
 })
 
-const regExpLink = /https:\/\/[a-zA-Z0-9.-]+/g;
+const regExpLink = /https:\/\/[a-zA-Z0-9.]+[com]/i;
 const linkResult = document.querySelector('.link');
 const resultLink = textValue.match(regExpLink);
 
