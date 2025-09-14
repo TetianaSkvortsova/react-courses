@@ -2,9 +2,11 @@
     width: 1000px;
 }
 .slider {
-    height: 399px;
+    width: 100%;
+    height: 667px;
     border: black 1px solid;
-    margin: 200px;
+    margin-left: 300px;
+    margin-top: 150px;
     position: relative;
 }
 
