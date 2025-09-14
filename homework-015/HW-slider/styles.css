@@ -1,5 +1,8 @@
+.wrapper{
+    width: 1000px;
+}
 .slider {
-    height: 325px;
+    height: 399px;
     border: black 1px solid;
     margin: 200px;
     position: relative;
