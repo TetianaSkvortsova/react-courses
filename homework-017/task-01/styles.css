@@ -1,0 +1,46 @@
+.wrapper {
+    font: 24px/30px "Calibri", sans-serif;
+}
+
+.index-number {
+    width: 10px;
+}
+
+.full-name, .summary {
+    width: 200px;
+}
+
+.age {
+   width: 100px;
+}
+
+.scores {
+    width: 90px;
+}
+
+.average-score {
+    width: 90px;
+}
+
+.attendance {
+    width: 120px;
+}
+
+.line {
+    width: fit-content;
+    display: flex;
+    border: black 1px solid;
+}
+
+.line > div {
+    border-right: black 1px solid;
+    padding: 5px 10px;
+}
+
+.scores > div {
+    border-bottom: black 1px solid;
+}
+
+.attendance > div {
+    border-bottom: black 1px solid;
+}
