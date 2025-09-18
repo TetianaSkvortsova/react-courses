@@ -9,7 +9,6 @@ function displayStudents() {
         const studentFullName = document.createElement('div');
         const studentAge = document.createElement('div');
         const studentAverageScore = document.createElement('div');
-        const studentAverageAttendance = document.createElement('div');
         const studentSummary = document.createElement('div');
 
         studentLine.setAttribute('class', 'line');
@@ -17,7 +16,6 @@ function displayStudents() {
         studentFullName.setAttribute('class', 'full-name');
         studentAge.setAttribute('class', 'age');
         studentAverageScore.setAttribute('class', 'average-score');
-        studentAverageAttendance.setAttribute('class', 'average-attendance');
         studentSummary.setAttribute('class', 'summary');
 
 
