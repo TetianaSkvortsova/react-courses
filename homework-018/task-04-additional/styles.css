@@ -1,0 +1,100 @@
+body * {
+    font: 24px/30px "Calibri", sans-serif;
+}
+
+.create-building {
+    cursor: pointer;
+}
+
+.building-container {
+    margin-top: 85px;
+}
+
+.floor-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    border-right: black 1px solid;
+}
+
+.floor {
+    width: 70px;
+    border: black 1px solid;
+    border-right: none;
+    border-bottom: none;
+    padding: 2px 10px 10px;
+}
+
+.floor-container:last-child {
+    border-bottom: black 1px solid;
+}
+
+.apartment {
+    width: 150px;
+    padding: 10px;
+    border: black 1px solid;
+    border-right: none;
+    border-bottom: none;
+}
+
+.apartment-number {
+    font: 20px/14px "Calibri", sans-serif;
+}
+
+.resident {
+    font: 14px/14px "Calibri", sans-serif;
+    color: blue;
+}
+
+.btn-add-resident {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 47px;
+    margin-top: 20px;
+}
+
+.create-apartment {
+    display: none;
+}
+
+.search-flats {
+    display: none;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: black 1px solid;
+}
+
+.search-flats > * {
+    margin-right: 10px;
+    padding: 0 5px;
+}
+
+.settings {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    background-color: white;
+}
+
+.one-room {
+    background-color: #bfffb8;
+}
+
+.two-rooms {
+    background-color: #c4fffd;
+}
+
+.tree-rooms {
+    background-color: yellow;
+}
+
+.four-rooms {
+    background-color: #efa4ff;
+}
+
+.five-rooms {
+    background-color: #ffc07e;
+}
+
