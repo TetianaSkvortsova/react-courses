@@ -4,26 +4,6 @@ const pagination = document.querySelector('.pagination');
 const images = document.querySelector('.images');
 const navigation = document.querySelector('.arrows');
 
-
-sliderConstructor(10);
-
-let interval = setInterval(autoScroll, 1500);
-
-pagination.addEventListener('click', (event) => {
-    if (event.target.classList.value !== 'pagination') {
-        const paginationId = event.target.getAttribute('id');
-        togglePagination(paginationId, event.target);
-    }
-})
-
-navigation.addEventListener('click', (event) => {
-    clearInterval(interval);
-    const direction = event.target.classList.value;
-    const currentImg = document.querySelector('.showImage')
-    imgNavigation(currentImg, direction);
-    interval = setInterval(autoScroll, 1500);
-})
-
 function sliderConstructor (imgAmount) {
     for (let i = 0; i < imgAmount; i++) {
         const paginationItem = build(i + 1, 'round', pagination)
@@ -90,3 +70,22 @@ function imgNavigation(currentImage, direction) {
         }
     }
 }
+
+sliderConstructor(10);
+
+let interval = setInterval(autoScroll, 1500);
+
+pagination.addEventListener('click', (event) => {
+    if (event.target.classList.value !== 'pagination') {
+        const paginationId = event.target.getAttribute('id');
+        togglePagination(paginationId, event.target);
+    }
+})
+
+navigation.addEventListener('click', (event) => {
+    clearInterval(interval);
+    const direction = event.target.classList.value;
+    const currentImg = document.querySelector('.showImage')
+    imgNavigation(currentImg, direction);
+    interval = setInterval(autoScroll, 1500);
+})
