@@ -1,0 +1,7 @@
+.timer {
+    width: 200px;
+    height: 100px;
+    border: black 1px solid;
+    font: 40px/100px "Calibri", sans-serif;
+    text-align: center;
+}
