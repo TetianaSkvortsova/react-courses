@@ -4,22 +4,8 @@ const pagination = document.querySelector('.pagination');
 const images = document.querySelector('.images');
 const navigation = document.querySelector('.arrows');
 
-for (let i = 0; i < 10; i++) {
-    const paginationItem = document.createElement('div');
-    paginationItem.setAttribute('class', 'round');
-    paginationItem.setAttribute('id', `${i + 1}`);
-    pagination.appendChild(paginationItem);
 
-    const imageItem = document.createElement('div');
-    imageItem.setAttribute('class', 'image');
-    imageItem.style.backgroundImage = `url('images/${i + 1}.png')`;
-    imageItem.setAttribute('id', `${i + 1}`);
-    images.appendChild(imageItem);
-    if (i === 0) {
-        imageItem.classList.add('showImage');
-        paginationItem.classList.add('toggle');
-    }
-}
+sliderConstructor();
 
 let interval = setInterval(autoScroll, 1500);
 
@@ -37,6 +23,27 @@ navigation.addEventListener('click', (event) => {
     imgNavigation(currentImg, direction);
     interval = setInterval(autoScroll, 1500);
 })
+
+function sliderConstructor () {
+    for (let i = 0; i < 10; i++) {
+        const paginationItem = build(i + 1, 'round', pagination)
+        const imageItem = build(i + 1, 'image', images);
+        imageItem.style.backgroundImage = `url('images/${i + 1}.png')`;
+
+        if (i === 0) {
+            imageItem.classList.add('showImage');
+            paginationItem.classList.add('toggle');
+        }
+    }
+}
+
+function build(id, attribute, parent) {
+    const element = document.createElement('div');
+    element.setAttribute('class', `${attribute}`);
+    element.setAttribute('id', `${id}`);
+    parent.appendChild(element);
+    return element;
+}
 
 function autoScroll() {
     const currentImg = document.querySelector('.showImage')
