@@ -1,7 +1,26 @@
+body * {
+    font: 40px/100px "Calibri", sans-serif;
+}
+
+.set-timer {
+    margin: 30px;
+}
+
+.set-timer input {
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+}
+
+.set-timer button {
+    padding: 10px;
+}
+
 .timer {
+    display: none;
     width: 200px;
     height: 100px;
     border: black 1px solid;
-    font: 40px/100px "Calibri", sans-serif;
     text-align: center;
+    margin: 30px;
 }
