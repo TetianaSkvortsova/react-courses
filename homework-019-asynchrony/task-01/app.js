@@ -10,7 +10,7 @@ const setTimerBtn = document.querySelector('.set-timer button');
 
 setTimerBtn.addEventListener('click', () => {
     const setTimerInput = document.querySelector('.set-timer input');
-    const start = Number(setTimerInput.value);
+    const start = setTimerInput.value;
 
     startTimer(start, setTimerInput);
 })
