@@ -5,7 +5,7 @@ const images = document.querySelector('.images');
 const navigation = document.querySelector('.arrows');
 
 
-sliderConstructor();
+sliderConstructor(10);
 
 let interval = setInterval(autoScroll, 1500);
 
@@ -24,8 +24,8 @@ navigation.addEventListener('click', (event) => {
     interval = setInterval(autoScroll, 1500);
 })
 
-function sliderConstructor () {
-    for (let i = 0; i < 10; i++) {
+function sliderConstructor (imgAmount) {
+    for (let i = 0; i < imgAmount; i++) {
         const paginationItem = build(i + 1, 'round', pagination)
         const imageItem = build(i + 1, 'image', images);
         imageItem.style.backgroundImage = `url('images/${i + 1}.png')`;
