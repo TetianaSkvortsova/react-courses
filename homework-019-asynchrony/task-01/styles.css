@@ -6,11 +6,22 @@ body * {
     margin: 30px;
 }
 
+.set-timer p {
+    font: 25px/25px "Calibri", sans-serif;
+    color: blue;
+}
+
 .set-timer input {
     width: 100px;
     padding: 10px;
     text-align: center;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 .set-timer button {
     padding: 10px;

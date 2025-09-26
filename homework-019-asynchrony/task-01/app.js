@@ -31,7 +31,6 @@ function startTimer(start, setTimerInput) {
             timerContainer.style.display = 'none';
         }
         start -= 1;
-        console.log(start);
     }
     intervalHandler();
     const interval = setInterval(intervalHandler, 1000);
