@@ -11,8 +11,8 @@ const apis = new Map([
     ['vehicles', 'https://swapi.dev/api/vehicles/']
 ]);
 const regEx = /\?.*/;
-
 let parent;
+const myModal = document.getElementById('myModal');
 const container = document.querySelector('.container');
 
 function loadData(essence) {
@@ -23,7 +23,7 @@ function loadData(essence) {
             const page = essenceUrl.match(regEx);
             const page_1 = '?page=1';
             const pageNumber = page ? page[0] : page_1;
-            createSpan(result.results, pageNumber);
+            createSpan(result.results, pageNumber, essence);
             const loadMoreBtn = document.querySelector(`.${essence} .btn-load`);
 
             apis.set(essence, result.next);
@@ -42,65 +42,88 @@ function createRow(child) {
     parent.insertBefore(newRow, parent.lastElementChild);
 }
 
-function createSpan(data, page) {
+function createSpan(data, page, essence) {
     data.forEach((item) => {
         const spanElement = document.createElement('span');
         spanElement.textContent = item.name;
-        spanElement.setAttribute('data-bs-toggle', 'modal');
-        spanElement.setAttribute('data-bs-target', '#myModal');
-        spanElement.setAttribute('data-page', `${page}`);
+        if (essence === 'people') {
+            spanElement.setAttribute('data-bs-toggle', 'modal');
+            spanElement.setAttribute('data-bs-target', '#myModal');
+            spanElement.setAttribute('data-page', `${page}`);
+        }
         createRow(spanElement);
     })
 }
 
-function loadModalApis(essence, page, name) {
-    const api = `https://swapi.dev/api/${essence}/${page}`;
-    console.log(api);
-    // const modalApis = new Map();
-    /*fetch(api)
+function loadModalApis(page, name) {
+    const api = `https://swapi.dev/api/people/${page}`;
+    const modalApis = new Map();
+    fetch(api)
         .then((res) => res.json())
-        .then((result) => {
-            const character = result.results.find((characterName) => characterName.name === name);
+        .then(({results}) => {
+            const character = results.find((characterName) => characterName.name === name);
             const apiPlanet = character.homeworld;
             modalApis.set('planet', apiPlanet);
             const apiVehicles = character.vehicles.map((vehicle) => vehicle);
             modalApis.set('vehicle', apiVehicles);
             getModalData(modalApis);
-        })*/
+        })
 }
 
-/*function getModalData(modalApisMap) {
+function getModalData(modalApisMap) {
     const planetApi = modalApisMap.get('planet');
-    getDetails(planetApi);
-    // console.log(planet);
+    const vehicleApi = modalApisMap.get('vehicle');
+    const homePlanet = document.querySelector('.home-planet');
+    const essenceVehicle = document.querySelector('.essence-vehicle');
+    getDetails(planetApi, homePlanet);
+    if (vehicleApi.length) {
+        vehicleApi.forEach((vehicle) => {
+            getDetails(vehicle, essenceVehicle);
+        })
+    } else {
+        const result = {
+            name: 'This character has no vehicles'
+        }
+        essenceVehicle.appendChild(createContentElement(result));
+    }
 }
 
-function getDetails(api) {
+function createContentElement(result) {
+    const content = document.createElement('p');
+    content.setAttribute('class', 'temp');
+    content.textContent = `${result.name}`;
+    return content;
+}
+
+function getDetails(api, placeReply) {
     fetch(api)
         .then((res) => res.json())
         .then((result) => {
-           // console.log(result.name);
-            const
-
-           return result.name;
+            const content = createContentElement(result);
+            placeReply.appendChild(content);
         })
-}*/
+}
 
 container.addEventListener('click', (event) => {
     const targetType = event.target.type;
+    const parentId = event.target.parentNode.parentNode.id;
     if (targetType === "button") {
         const targetId = event.target.parentNode.id;
         parent = event.target.parentNode;
         loadData(targetId);
         parent.firstElementChild.disabled = true;
-    } else if (event.target.tagName === "SPAN") {
+    } else if (parentId === "people") {
         const modalHeader = document.getElementById('myModalLabel');
         const name = event.target.textContent;
         modalHeader.textContent = name;
-        const targetId = event.target.parentNode.parentNode.id;
         const page = event.target.getAttribute('data-page');
-        loadModalApis(targetId, page, name);
+        loadModalApis(page, name);
     } else {
         event.stopPropagation();
     }
 })
+
+myModal.addEventListener('hidden.bs.modal', function () {
+    const replyPlace = document.querySelectorAll('.temp');
+    replyPlace.forEach((item) => item.remove());
+});

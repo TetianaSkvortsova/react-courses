@@ -10,7 +10,7 @@
     border: 1px solid rgba(112.520718, 44.062154, 249.437846, .3);
 }
 
-.themed-grid-col span:hover {
+.people .themed-grid-col:hover span {
     cursor: pointer;
     font-weight: bold;
 }
@@ -35,4 +35,12 @@
 
 .btn-load {
     margin-top: 20px;
+}
+
+.home-planet, .essence-vehicle {
+    font-weight: bold;
+}
+
+.temp {
+    font-weight: normal;
 }
