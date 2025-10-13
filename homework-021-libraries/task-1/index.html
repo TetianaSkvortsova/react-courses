@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div class="container mt-5">
+    <span data-bs-toggle="tooltip" data-bs-title="Tooltip on top">
+        <button type="button"
+                class="btn btn-primary btn-lg"
+                data-bs-toggle="modal"
+                data-bs-target="#feedbackModal"> Click to open
+        </button>
+    </span>
+
+    <div class="container mt-4">
+        <div id="alertPlaceholder"></div>
+
+        <button type="button" class="btn btn-primary" id="alertButton" data-toggle="on">
+            Show alert
+        </button>
+    </div>
+
+
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Modal window</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Congratulations! This modal window has been successfully opened using Bootstrap.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
