@@ -50,7 +50,7 @@ inputElement.addEventListener('keyup', (event) => {
             if(!checkValid.isValid()) {
                 showAlert('The day or month entered incorrectly', 'danger');
             } else {
-                formatUserDate = moment(validation[0]).format('YYYY MMMM DD');
+                formatUserDate = moment(validation[0], format).format('YYYY MMMM DD');
                 showAlert(formatUserDate, 'success');
             }
         }
