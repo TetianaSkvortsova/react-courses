@@ -1,4 +1,3 @@
 /.idea/
 /homework-021-libraries/node_modules/
-/homework-023-babel/task-2/dist/
-/homework-023-babel/task-1/dist/
+/dist/
