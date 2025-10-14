@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "homework-021-libraries/task-1/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:hw23:t1": "babel homework-023-babel/task-1/js/ -d dist/hw23/task-1 --minified",
+    "build:hw23:t2": "babel homework-023-babel/task-2/js/ -d dist/hw23/task-2 --minified",
+    "build": "npm run build:hw23:t1 && npm run build:hw23:t2"
   },
   "author": "",
   "license": "MIT",
