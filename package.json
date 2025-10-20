@@ -5,7 +5,11 @@
   "scripts": {
     "build:hw23:t1": "babel homework-023-babel/task-1/js/ -d dist/hw23/task-1 --minified",
     "build:hw23:t2": "babel homework-023-babel/task-2/js/ -d dist/hw23/task-2 --minified",
-    "build": "npm run build:hw23:t1 && npm run build:hw23:t2"
+    "build:babel": "npm run build:hw23:t1 && npm run build:hw23:t2",
+    "dev": "webpack --mode development --config ./homework-024-webpack/webpack.config.js",
+    "build": "webpack --mode production --config ./homework-024-webpack/webpack.config.js",
+    "watch": "webpack --mode development --watch --config ./homework-024-webpack/webpack.config.js",
+    "start": "webpack serve --mode development --open --config ./homework-024-webpack/webpack.config.js"
   },
   "author": "",
   "license": "MIT",
@@ -17,6 +21,15 @@
   "devDependencies": {
     "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.4",
-    "@babel/preset-env": "^7.28.3"
+    "@babel/preset-env": "^7.28.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "sass": "^1.93.2",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }

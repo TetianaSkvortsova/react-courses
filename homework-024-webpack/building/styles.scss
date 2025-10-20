@@ -1,0 +1,180 @@
+// styles.scss
+@use "sass:color";
+// Color Palette
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+$accent-color: #3498db;
+$light-gray: #ecf0f1;
+$dark-gray: #7f8c8d;
+$white: #ffffff;
+$blue: blue;
+
+// Font Variables
+$base-font: "Calibri", sans-serif;
+$base-font-size: 16px;
+$base-line-height: 1.5;
+
+// Border Variables
+$border-color: #67696b;
+$border-width: 1px;
+$border-radius: 5px;
+
+// Spacing Variables
+$small-spacing: 10px;
+$medium-spacing: 20px;
+$large-spacing: 30px;
+
+//General Styles
+body {
+    font: #{$base-font-size}/#{$base-line-height} $base-font;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $medium-spacing;
+    text-align: center; // Add this line to center content horizontally
+}
+
+// Settings Section
+.settings {
+    display: flex;
+    position: fixed;
+    justify-self: anchor-center;
+    top: $small-spacing;
+    left: $small-spacing;
+    background-color: $white;
+    padding: $small-spacing;
+    border-radius: $border-radius;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    button {
+        background-color: $primary-color;
+        color: $white;
+        border: none;
+        padding: $small-spacing $medium-spacing;
+        margin-right: $small-spacing;
+        border-radius: $border-radius;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: color.adjust($primary-color, $lightness: -10%);
+        }
+
+        &.create-apartment {
+            display: none; // Hidden by default
+        }
+    }
+}
+
+// Building Structure Styles
+.building-container {
+    margin-top: 85px;
+    display: inline-block; // Add this line to allow centering
+    text-align: left; // Reset text alignment for child elements
+}
+
+.floor-container {
+    display: flex;
+    flex-direction: row;
+    border-right: $border-color $border-width solid;
+    width: fit-content;
+
+    &:last-child {
+        border-bottom: $border-color $border-width solid;
+    }
+}
+
+.floor {
+    width: 70px;
+    border: $border-color $border-width solid;
+    border-right: none;
+    border-bottom: none;
+    padding: 2px $small-spacing $small-spacing;
+    text-align: center;
+}
+
+.apartment {
+    width: 150px;
+    padding: $small-spacing;
+    border: $border-color $border-width solid;
+    border-right: none;
+    border-bottom: none;
+    text-align: center;
+}
+
+.apartment-number {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+.resident {
+    font-size: 0.9em;
+    line-height: 0.9em;
+    color: $blue;
+}
+
+.btn-add-resident {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: $medium-spacing auto 0;
+    background-color: $accent-color;
+    color: $white;
+    border: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+    }
+}
+
+// Search Flats Section
+.search-flats {
+    display: none;
+    margin-left: $medium-spacing;
+    padding: $small-spacing $medium-spacing;
+    border: $border-color $border-width solid;
+    border-radius: $border-radius;
+
+    & > div {
+        margin-right: $small-spacing;
+        padding: 0 $small-spacing;
+        display: inline-block;
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    }
+}
+
+// Highlighted Room Styles (Mixin)
+@mixin highlighted-room($background-color) {
+    background-color: $background-color;
+}
+
+.one-room {
+    @include highlighted-room(#bfffb8);
+}
+
+.two-rooms {
+    @include highlighted-room(#c4fffd);
+}
+
+.tree-rooms {
+    @include highlighted-room(yellow);
+}
+
+.four-rooms {
+    @include highlighted-room(#efa4ff);
+}
+
+.five-rooms {
+    @include highlighted-room(#ffc07e);
+}
