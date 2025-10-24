@@ -1,0 +1,253 @@
+/*
+@use "bootstrap" as *;
+
+!* Ваші кастомні стилі *!
+
+.add-task {
+  margin-bottom: 10px;
+}
+
+.no-tasks{
+  height: 200px;
+  line-height: 200px;
+}
+
+.custom-heading {
+  color: #007bff; !* Primary color *!
+}
+
+.themed-grid-col {
+  !* Додаємо щось унікальне для вашого класу *!
+  border: 1px solid #dee2e6 !important;
+  font-weight: bold;
+}
+
+.delete-btn {
+  padding: 10px;
+  background-color: red;
+  cursor: pointer;
+}
+
+.edit-btn {
+  padding: 10px;
+  background-color: blue;
+  cursor: pointer;
+}
+
+.row .bg-info:last-child{
+  display: flex;
+}*/
+
+/* SCSS STYLES FOR MODERN TODO LIST (Based on Bootstrap Grid)
+*/
+
+// --- 1. Variables and Mixins ---
+@use "bootstrap" as *;
+$primary-color: #20c997; // Teal / Cyan for primary actions
+$secondary-color: #f8f9fa; // Light background
+$text-color: #343a40; // Dark text
+$border-radius: 0.5rem;
+$shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
+$shadow-hover: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+// Task Priority Colors
+$priority-high: #dc3545; // Red
+$priority-middle: #ffc107; // Yellow
+$priority-low: #0dcaf0; // Light Blue
+
+@mixin focus-shadow($color) {
+  box-shadow: 0 0 0 0.25rem rgba($color, 0.5);
+}
+
+// --- 2. Global Resets and Utility Overrides ---
+body {
+  background-color: $secondary-color;
+  color: $text-color;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 50px;
+}
+
+.custom-heading {
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+}
+
+// --- 3. Task Table (Header and Rows) ---
+
+#header {
+  font-weight: 700;
+  background-color: darken($secondary-color, 3%);
+  border-radius: $border-radius $border-radius 0 0;
+  overflow: hidden;
+  color: $text-color;
+  box-shadow: $shadow-light;
+
+  .col-2 {
+    padding: 0.75rem 0.5rem;
+    background-color: transparent !important; /* Overriding Bootstrap bg-light */
+    border: none !important;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+}
+
+#tasksTable {
+  box-shadow: $shadow-light;
+  border-radius: 0 0 $border-radius $border-radius;
+  overflow: hidden;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  .no-tasks {
+    padding: 1.5rem;
+    text-align: center;
+    color: lighten($text-color, 30%);
+    font-style: italic;
+    background-color: white;
+  }
+
+  .row {
+    background-color: white;
+    border-radius: 0;
+    transition: background-color 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      background-color: lighten($secondary-color, 5%);
+      box-shadow: inset 3px 0 0 0 $primary-color;
+    }
+
+    // Target individual column cells
+    .col-2 {
+      border: none !important;
+      padding: 1rem 0.5rem;
+
+      &:not(:last-child) {
+        border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+      }
+    }
+  }
+}
+
+// --- 4. Priority Badges and Colors ---
+
+// Color coding for the Priority column based on text content
+.row .col-2:nth-child(5) { // 5th column is Priority
+  font-weight: 600;
+  width: 130px;
+
+  // High Priority
+  &[data-priority="High"] {
+    color: $priority-high;
+  }
+
+  // Middle Priority
+  &[data-priority="Middle"] {
+    color: $priority-middle;
+  }
+
+  // Low Priority
+  &[data-priority="Low"] {
+    color: $priority-low;
+  }
+}
+
+.row .col-2:nth-child(1) {
+  width: 100px;
+}
+.row .col-2:nth-child(2) {
+  width: 430px;
+}
+.row .col-2:nth-child(4) {
+  width: 130px;
+}
+
+// --- 5. Buttons and Actions ---
+
+.add-task {
+  margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary, .delete-btn, .edit-btn {
+  border-radius: $border-radius;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+
+  &:hover {
+    background-color: darken($primary-color, 8%);
+    border-color: darken($primary-color, 8%);
+  }
+  &:focus {
+    @include focus-shadow($primary-color);
+  }
+}
+
+.delete-btn, .edit-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  margin: 0 0.2rem;
+  font-size: 0.8rem;
+  border-radius: 0.3rem;
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+  }
+}
+
+.delete-btn {
+  background-color: $priority-high;
+  color: white;
+  border: none;
+}
+
+.edit-btn {
+  background-color: $priority-middle;
+  color: $text-color;
+}
+
+// --- 6. Modal and Form Styling ---
+
+.modal-content {
+  border-radius: 1rem;
+  box-shadow: $shadow-hover;
+
+  .form-control, .form-select {
+    border-radius: 0.5rem;
+    &:focus {
+      border-color: $primary-color;
+      @include focus-shadow($primary-color);
+    }
+  }
+
+  // flatpickr override
+  .flatpickr-input:focus {
+    border-color: $primary-color !important;
+    @include focus-shadow($primary-color);
+  }
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  .modal-title {
+    font-weight: 700;
+  }
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+

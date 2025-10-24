@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo list Node.js</title>
+</head>
+<body>
+<div class="container mt-5">
+<!--    <h1 class="custom-heading">Todo list</h1>-->
+    <!--    <p>Клієнтська частина завантажена та стилізована.</p>-->
+
+    <!-- === КНОПКИ BOOTSTRAP === -->
+    <div class="d-flex gap-3 add-task">
+        <button class="btn btn-primary" id="addTaskBtn" data-bs-toggle="modal" data-bs-target="#creatNewTask">+ Add Task</button>
+    </div>
+    <div class="row text-center" id="header">
+        <div class="col-2 themed-grid-col p-2">№</div>
+        <div class="col-2 themed-grid-col p-2">Title</div>
+        <div class="col-2 themed-grid-col p-2">Assignee</div>
+        <div class="col-2 themed-grid-col p-2">Due date</div>
+        <div class="col-2 themed-grid-col p-2">Priority</div>
+        <div class="col-2 themed-grid-col p-2">Action</div>
+    </div>
+    <div id="tasksTable">
+        <div class="themed-grid-col border bg-light p-2 no-tasks">There are no tasks yet</div>
+    </div>
+<!--    --------------------------Modal------------------>
+    <div class="modal fade" id="creatNewTask" tabindex="-1" aria-labelledby="creatNewTaskLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="creatNewTaskLabel">Create task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="" method="POST" id="newTask">
+
+                        <div class="mb-3">
+                            <label for="taskName" class="form-label">Task name</label>
+                            <input name="taskName" type="text" class="form-control" id="taskName" placeholder="Enter task name"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="taskDescription" name="taskDescription" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="personSelect" class="form-label">Assignee</label>
+
+                            <select class="form-select" id="personSelect" name="selectedPerson"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="prioritySelect" class="form-label">Priority</label>
+
+                            <select class="form-select" id="prioritySelect" name="selectedPriority">
+                                <option value="">-- Choose priority --</option>
+                                <option value="High">High</option>
+                                <option value="Middle">Middle</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="myDatePicker" class="form-label">Due date</label>
+                            <input type="text" class="form-control" id="myDatePicker" name = "pickedDate">
+                        </div>
+                        <button type="button" class="btn btn-primary w-100" id="sendTask">Create</button>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewTaskModal" tabindex="-1" aria-labelledby="viewTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewTaskModalLabel">Task Details: <span id="viewTaskTitle"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Description:</h6>
+                    <!-- Використовуємо <pre> для збереження форматування тексту з textarea -->
+                    <pre class="p-3 bg-light border rounded" id="viewTaskDescriptionContent"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

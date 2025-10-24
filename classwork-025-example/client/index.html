@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Users Manager</h1>
+      <p class="subtitle">Create, view and remove users (in-memory demo)</p>
+    </header>
+
+    <main>
+      <section class="card form-card">
+        <h2>Add user</h2>
+        <form id="userForm" class="user-form">
+          <div class="row">
+            <label for="fullname">Full name</label>
+            <input id="fullname" name="name" required placeholder="Jane Doe" />
+          </div>
+          <div class="row">
+            <label for="login">Login</label>
+            <input id="login" name="login" required placeholder="jane" />
+          </div>
+          <div class="row actions">
+            <button type="submit" class="btn primary">Add</button>
+            <button type="button" id="clearBtn" class="btn">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card list-card">
+        <h2>Users</h2>
+        <div id="users" class="users-list">
+          <!-- users render here -->
+        </div>
+        <div id="empty" class="empty">No users yet — add one above</div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>Local demo — data kept in server memory. Refresh server to reset.</small>
+    </footer>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
