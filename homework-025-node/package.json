@@ -4,7 +4,8 @@
   "main": "todo-list/server/app.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development --open"
+    "start": "webpack serve --mode development --open",
+    "start:be": "node .\\todo-list\\server\\app.js"
   },
   "keywords": [],
   "author": "",
