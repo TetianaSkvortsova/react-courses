@@ -1,65 +1,19 @@
-/*
 @use "bootstrap" as *;
-
-!* Ваші кастомні стилі *!
-
-.add-task {
-  margin-bottom: 10px;
-}
-
-.no-tasks{
-  height: 200px;
-  line-height: 200px;
-}
-
-.custom-heading {
-  color: #007bff; !* Primary color *!
-}
-
-.themed-grid-col {
-  !* Додаємо щось унікальне для вашого класу *!
-  border: 1px solid #dee2e6 !important;
-  font-weight: bold;
-}
-
-.delete-btn {
-  padding: 10px;
-  background-color: red;
-  cursor: pointer;
-}
-
-.edit-btn {
-  padding: 10px;
-  background-color: blue;
-  cursor: pointer;
-}
-
-.row .bg-info:last-child{
-  display: flex;
-}*/
-
-/* SCSS STYLES FOR MODERN TODO LIST (Based on Bootstrap Grid)
-*/
-
-// --- 1. Variables and Mixins ---
-@use "bootstrap" as *;
-$primary-color: #20c997; // Teal / Cyan for primary actions
-$secondary-color: #f8f9fa; // Light background
-$text-color: #343a40; // Dark text
+$primary-color: #20c997;
+$secondary-color: #f8f9fa;
+$text-color: #343a40;
 $border-radius: 0.5rem;
 $shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
 $shadow-hover: 0 6px 15px rgba(0, 0, 0, 0.15);
 
-// Task Priority Colors
-$priority-high: #dc3545; // Red
-$priority-middle: #ffc107; // Yellow
-$priority-low: #0dcaf0; // Light Blue
+$priority-high: #dc3545;
+$priority-middle: #ffc107;
+$priority-low: #0dcaf0;
 
 @mixin focus-shadow($color) {
   box-shadow: 0 0 0 0.25rem rgba($color, 0.5);
 }
 
-// --- 2. Global Resets and Utility Overrides ---
 body {
   background-color: $secondary-color;
   color: $text-color;
@@ -78,8 +32,6 @@ body {
   max-width: 1200px;
 }
 
-// --- 3. Task Table (Header and Rows) ---
-
 #header {
   font-weight: 700;
   background-color: darken($secondary-color, 3%);
@@ -90,7 +42,7 @@ body {
 
   .col-2 {
     padding: 0.75rem 0.5rem;
-    background-color: transparent !important; /* Overriding Bootstrap bg-light */
+    background-color: transparent !important;
     border: none !important;
 
     &:not(:last-child) {
@@ -124,7 +76,6 @@ body {
       box-shadow: inset 3px 0 0 0 $primary-color;
     }
 
-    // Target individual column cells
     .col-2 {
       border: none !important;
       padding: 1rem 0.5rem;
@@ -136,24 +87,18 @@ body {
   }
 }
 
-// --- 4. Priority Badges and Colors ---
-
-// Color coding for the Priority column based on text content
-.row .col-2:nth-child(5) { // 5th column is Priority
+.row .col-2:nth-child(5) {
   font-weight: 600;
   width: 130px;
 
-  // High Priority
   &[data-priority="High"] {
     color: $priority-high;
   }
 
-  // Middle Priority
   &[data-priority="Middle"] {
     color: $priority-middle;
   }
 
-  // Low Priority
   &[data-priority="Low"] {
     color: $priority-low;
   }
@@ -168,8 +113,6 @@ body {
 .row .col-2:nth-child(4) {
   width: 130px;
 }
-
-// --- 5. Buttons and Actions ---
 
 .add-task {
   margin-bottom: 2rem;
@@ -219,8 +162,6 @@ body {
   color: $text-color;
 }
 
-// --- 6. Modal and Form Styling ---
-
 .modal-content {
   border-radius: 1rem;
   box-shadow: $shadow-hover;
@@ -233,7 +174,6 @@ body {
     }
   }
 
-  // flatpickr override
   .flatpickr-input:focus {
     border-color: $primary-color !important;
     @include focus-shadow($primary-color);

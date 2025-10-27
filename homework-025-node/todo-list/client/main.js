@@ -4,42 +4,37 @@ import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
 import {Modal} from 'bootstrap';
 
-flatpickr("#myDatePicker", {
+flatpickr("#datePicker", {
     dateFormat: "Y-m-d",
 });
 
-const sendTask = document.getElementById('sendTask');
+flatpickr("#editDate", {
+    dateFormat: "Y-m-d",
+});
+
+const creatNewTaskBtn = document.getElementById('creatTask');
+const saveTaskChangesBtn = document.getElementById('saveTaskChanges');
 const container = document.querySelector('.container');
 
 async function postData(data, method, postUrl) {
     try {
 
         const response = await fetch(postUrl, {
-            // 1. Метод: Обов'язково POST
             method,
-
-            // 2. Заголовки: Вказуємо, що ми надсилаємо JSON
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': 'Bearer YOUR_TOKEN' // Якщо потрібна автентифікація
             },
-
-            // 3. Тіло запиту: Конвертуємо JS-об'єкт у рядок JSON
             body: JSON.stringify(data)
         });
 
-        // Перевіряємо, чи успішна відповідь сервера (наприклад, статус 200-299)
         if (!response.ok) {
-            // Викидаємо помилку, якщо статус, наприклад, 404 або 500
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Отримуємо та повертаємо JSON-відповідь від сервера
         return await response.json();
 
     } catch (error) {
         console.error('Помилка при відправці запиту:', error);
-        // Можна повернути помилковий об'єкт або null
         return null;
     }
 }
@@ -55,28 +50,23 @@ async function getData(getUrl, params = {}) {
         const response = await fetch(fullUrl);
 
         if (!response.ok) {
-            // Кидаємо помилку, якщо HTTP-статус невдалий
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        // 2. Очікуємо парсингу відповіді у JSON і ПОВЕРТАЄМО ці дані
         return await response.json();
 
     } catch (error) {
         console.error('Fetch operation failed:', error);
-        // Повертаємо null або пустий об'єкт у разі помилки
         return null;
     }
 }
 
-function addAssigneeList(data) {
-    const assigneeList = document.getElementById('personSelect');
-
-    for (let assignee in data) {
+function renderAssigneesList(list, element) {
+    for (let assignee in list) {
         const listItem = document.createElement('option');
         listItem.setAttribute('value', `${assignee}`);
-        listItem.textContent = `${data[assignee]}`;
-        assigneeList.appendChild(listItem);
+        listItem.textContent = `${list[assignee]}`;
+        element.appendChild(listItem);
     }
 }
 
@@ -129,31 +119,84 @@ function formRequestObject(form) {
     const formElements = new FormData(form);
     for (const [name, value] of formElements.entries()) {
         formData[name] = value;
+        if (value === '') {
+            return false;
+        }
     }
     formData.status = 'new';
     return formData;
 }
 
-sendTask.addEventListener('click', async () => {
+function fillEditForm(task) {
+    const headerElement = document.getElementById('editNewTaskLabel');
+    const taskNameElement = document.getElementById('editTaskName');
+    const descriptionElement = document.getElementById('editTaskDescription');
+    const selectPersonElement = document.getElementById('editPersonSelect');
+    const selectPriorityElement = document.getElementById('editPrioritySelect');
+    const editDateElement = document.getElementById('editDate');
+    headerElement.textContent += ` ${task.id}`;
+    taskNameElement.value = task.taskName;
+    descriptionElement.value = task.taskDescription;
+    selectPersonElement.value = task.selectedPerson;
+    selectPriorityElement.value = task.selectedPriority;
+    editDateElement.value = task.pickedDate;
+}
+
+async function renderTask(editedTask) {
+    const rowElement = document.getElementById(editedTask.id);
+    const rowChildren = rowElement.childNodes;
+    rowChildren[1].textContent = editedTask.taskName;
+    const assigneeName = await getData('api/assignee', {value: editedTask.selectedPerson});
+    rowChildren[2].textContent = assigneeName[1];
+    rowChildren[3].textContent = editedTask.pickedDate;
+    rowChildren[4].textContent = editedTask.selectedPriority;
+}
+
+creatNewTaskBtn.addEventListener('click', async () => {
     const newTaskForm = document.getElementById('newTask');
     const requestData = formRequestObject(newTaskForm);
-    const postUrl = `api/task`;
 
-    const modalElement = document.getElementById('creatNewTask');
-    const modalInstance = Modal.getInstance(modalElement);
+    if (requestData) {
+        const postUrl = `api/task`;
 
-    const taskModalElement = document.getElementById('creatNewTask');
-    const newTask = document.getElementById('newTask');
+        const modalElement = document.getElementById('creatNewTask');
+        const modalInstance = Modal.getInstance(modalElement);
 
-    requestData.taskActions = '';
-    const tasks = await postData(requestData, 'POST', postUrl);
-    render(tasks);
-    modalInstance.hide();
+        const taskModalElement = document.getElementById('creatNewTask');
+        const newTask = document.getElementById('newTask');
 
-    if (taskModalElement && newTask) {
-        taskModalElement.addEventListener('hidden.bs.modal', function () {
-            newTask.reset();
-        });
+        requestData.taskActions = '';
+        const tasks = await postData(requestData, 'POST', postUrl);
+        render(tasks);
+        modalInstance.hide();
+
+        if (taskModalElement && newTask) {
+            taskModalElement.addEventListener('hidden.bs.modal', function () {
+                newTask.reset();
+            });
+        }
+    } else {
+        window.alert('All the fields have to be filled');
+    }
+})
+
+saveTaskChangesBtn.addEventListener('click', async (event) => {
+    const modalElement = document.getElementById('editTaskModal');
+    const editTaskElement = document.getElementById('editTask');
+
+    const putUrl = `api/task`;
+    const requestData = formRequestObject(editTaskElement);
+    if (requestData) {
+        requestData.id = event.target.getAttribute('data-task-id');
+        requestData.taskActions = '';
+        const editedTask = await postData(requestData, 'PUT', putUrl);
+
+        await renderTask(editedTask);
+
+        const modalInstance = Modal.getInstance(modalElement);
+        modalInstance.hide();
+    } else {
+        window.alert('All the fields have to be filled');
     }
 })
 
@@ -164,6 +207,19 @@ container.addEventListener('click', async (event) => {
         const postUrl = `api/task/${taskId}`;
         const tasks = await postData({}, 'DELETE', postUrl);
         render(tasks);
+
+    } else if (target === 'edit-btn') {
+        const editTaskModalElement = document.getElementById('editTaskModal');
+        const saveTaskChangesBtn = document.getElementById('saveTaskChanges');
+        const taskId = event.target.closest('.row').getAttribute('id');
+        const getUrl = `api/task/${taskId}`;
+        const task = await getData(getUrl, {});
+        saveTaskChangesBtn.setAttribute('data-task-id', `${taskId}`);
+
+        fillEditForm(task);
+
+        const editTaskModal = new Modal(editTaskModalElement);
+        editTaskModal.show();
     } else if (target === 'col-2') {
         const viewTaskModalElement = document.getElementById('viewTaskModal');
         const viewTaskModal = new Modal(viewTaskModalElement);
@@ -175,10 +231,14 @@ container.addEventListener('click', async (event) => {
         viewTaskModal.show();
     }
 })
+
 document.addEventListener('DOMContentLoaded', async () => {
+    const personSelectElement = document.getElementById('personSelect');
+    const editPersonSelect = document.getElementById('editPersonSelect');
     const assigneeList = await getData('api/assignees');
     if (assigneeList) {
-        addAssigneeList(assigneeList);
+        renderAssigneesList(assigneeList, personSelectElement);
+        renderAssigneesList(assigneeList, editPersonSelect);
     }
     const tasks = await getData('api/tasks');
     render(tasks);

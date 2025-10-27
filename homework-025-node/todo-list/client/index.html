@@ -6,10 +6,7 @@
 </head>
 <body>
 <div class="container mt-5">
-<!--    <h1 class="custom-heading">Todo list</h1>-->
-    <!--    <p>Клієнтська частина завантажена та стилізована.</p>-->
 
-    <!-- === КНОПКИ BOOTSTRAP === -->
     <div class="d-flex gap-3 add-task">
         <button class="btn btn-primary" id="addTaskBtn" data-bs-toggle="modal" data-bs-target="#creatNewTask">+ Add Task</button>
     </div>
@@ -45,19 +42,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="taskDescription" name="taskDescription" rows="3"></textarea>
+                            <textarea class="form-control" id="taskDescription" name="taskDescription" rows="3" required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="personSelect" class="form-label">Assignee</label>
 
-                            <select class="form-select" id="personSelect" name="selectedPerson"></select>
+                            <select class="form-select" id="personSelect" name="selectedPerson" required></select>
                         </div>
 
                         <div class="mb-3">
                             <label for="prioritySelect" class="form-label">Priority</label>
 
-                            <select class="form-select" id="prioritySelect" name="selectedPriority">
+                            <select class="form-select" id="prioritySelect" name="selectedPriority" required>
                                 <option value="">-- Choose priority --</option>
                                 <option value="High">High</option>
                                 <option value="Middle">Middle</option>
@@ -66,10 +63,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="myDatePicker" class="form-label">Due date</label>
-                            <input type="text" class="form-control" id="myDatePicker" name = "pickedDate">
+                            <label for="datePicker" class="form-label">Due date</label>
+                            <input type="text" class="form-control" id="datePicker" name = "pickedDate" required>
                         </div>
-                        <button type="button" class="btn btn-primary w-100" id="sendTask">Create</button>
+                        <button type="button" class="btn btn-primary w-100" id="creatTask">Create</button>
                     </form>
 
                 </div>
@@ -99,6 +96,63 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editNewTaskLabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form action="" method="POST" id="editTask">
+
+                        <div class="mb-3">
+                            <label for="editTaskName" class="form-label">Task name</label>
+                            <input name="editTaskName" type="text" class="form-control" id="editTaskName" placeholder="Enter task name"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTaskDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editTaskDescription" name="editTaskDescription" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editPersonSelect" class="form-label">Assignee</label>
+
+                            <select class="form-select" id="editPersonSelect" name="selectedPerson"></select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editPrioritySelect" class="form-label">Priority</label>
+
+                            <select class="form-select" id="editPrioritySelect" name="editPrioritySelect">
+                                <option value="">-- Choose priority --</option>
+                                <option value="High">High</option>
+                                <option value="Middle">Middle</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editDate" class="form-label">Due date</label>
+                            <input type="text" class="form-control" id="editDate" name = "editDate">
+                        </div>
+                        <button type="button" class="btn btn-primary w-100" id="saveTaskChanges">Save</button>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
