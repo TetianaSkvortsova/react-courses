@@ -1,0 +1,19 @@
+.profile {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-data {
+  font-size: 1.1em;
+  color: #555;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.profile-data:last-of-type {
+  border-bottom: none;
+  margin-bottom: 20px;
+}

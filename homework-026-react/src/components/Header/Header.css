@@ -1,0 +1,9 @@
+.profile-viewer {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
